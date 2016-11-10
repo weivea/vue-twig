@@ -67,10 +67,15 @@ function sessionFun() {
 }
 
 twig.ready(function(){
-  window.appVue =  new Vue({
-    el: '#container',
-    components: { app }
-  });
+  new Vue({
+    el:'#container',
+    template:'<app/>',
+    components:{
+      app:app
+    }
+  })
+  //
+  // _App.$mount('#container')
 });
 
 

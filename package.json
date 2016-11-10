@@ -1,6 +1,6 @@
 {
   "name": "vue-twig",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "用于vue.js的数据model层插件",
   "main": "dist/twig.js",
   "scripts": {

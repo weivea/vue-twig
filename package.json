@@ -1,43 +1,41 @@
 {
-  "name": "vue-twig",
-  "version": "1.0.1",
-  "description": "用于vue.js的数据model层插件",
-  "main": "dist/twig.js",
+  "name": "example",
+  "version": "0.0.1",
+  "description": "example",
+  "main": "index.js",
   "scripts": {
-    "build": "rollup --config rollup.config.js"
+    "build": "mkdir vue-storage; cp ../index.js ./vue-storage; cp -R ../lib ./vue-storage; webpack"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/weivea/vue-twig.git"
+    "type": "git"
   },
   "keywords": [
     "vue",
-    "twig",
-    "model"
+    "storage",
+    "localStorage",
+    "sessionStorage"
   ],
   "author": "weivea",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
-    "co": "^4.6.0",
     "css-loader": "^0.23.1",
     "file-loader": "^0.9.0",
-    "rollup": "^0.34.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "vue": "^1.0.8",
     "vue-hot-reload-api": "^1.3.2",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.5.3",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.13.0"
   },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/weivea/vue-twig/issues"
-  },
-  "homepage": "https://github.com/weivea/vue-twig#readme"
+  "dependencies": {
+    "co": "^4.6.0",
+    "vue": "^1.0.8",
+    "vue-twig": "^1.0.1"
+  }
 }

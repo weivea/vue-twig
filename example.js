@@ -3,7 +3,7 @@
  */
 
 import Vue from 'vue'
-import twig from'../index'
+import twig from'vue-twig'
 import app from './app.vue'
 import co from 'co'
 

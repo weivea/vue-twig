@@ -3,10 +3,10 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './example/example.js'
+    './example.js'
   ],
   output: {
-    path: 'example/dist',
+    path: 'dist',
     filename: 'bundle.js',
     publicPath: 'dist'
   },
@@ -19,9 +19,9 @@ module.exports = {
       {
         test: /\.(js)$/,
         loader: 'babel' ,
-        /*query: {
-          presets: ["es2015", 'stage-0']
-        },*/
+        // query: {
+        //   presets: ["es2015"]
+        // },
         exclude: /node_modules/
       },
       {

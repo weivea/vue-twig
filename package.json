@@ -1,0 +1,38 @@
+{
+  "name": "vue-twig",
+  "version": "1.0.0",
+  "description": "用于vue.js的数据model层插件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weivea/vue-twig.git"
+  },
+  "author": "weivea",
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "co": "^4.6.0",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.9.0",
+    "rollup": "^0.34.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "vue": "^1.0.8",
+    "vue-hot-reload-api": "^1.3.2",
+    "vue-html-loader": "^1.0.0",
+    "vue-loader": "^8.5.3",
+    "vue-style-loader": "^1.0.0",
+    "webpack": "^1.13.0"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weivea/vue-twig/issues"
+  },
+  "homepage": "https://github.com/weivea/vue-twig#readme"
+}

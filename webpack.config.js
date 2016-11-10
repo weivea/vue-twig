@@ -45,7 +45,7 @@ module.exports = {
   },
   babel: {
     presets: ['es2015', 'stage-0'],
-    plugins: ['transform-runtime']
+    plugins: ['transform-runtime','syntax-jsx']
   },
   postcss: function () {
     return [];

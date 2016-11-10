@@ -2,7 +2,7 @@
   "name": "vue-twig",
   "version": "1.0.0",
   "description": "用于vue.js的数据model层插件",
-  "main": "index.js",
+  "main": "dist/twig.js",
   "scripts": {
     "build": "rollup --config rollup.config.js"
   },

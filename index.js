@@ -102,16 +102,22 @@ class Twig {
       this[sType].setItem(this.prex + key, data)
     }
     this.downFlags[key] = true
-    this.timer = setTimeout(() => {
+    setTimeout(() => {
       this.checkReady()
     }, 0)
   }
 
   watchHander (data, key, sType) {
-    if (typeof data === 'object') {
-      data = JSON.stringify(data)
+    if(this.timer){
+      clearTimeout(this.timer)
+      this.timer = null
     }
-    this[sType].setItem(this.prex + key, data)
+    this.timer = setTimeout(() => {
+      if (typeof data === 'object') {
+        data = JSON.stringify(data)
+      }
+      this[sType].setItem(this.prex + key, data)
+    },0)
   }
 
   checkReady () {
@@ -120,8 +126,6 @@ class Twig {
         return
       }
     }
-    // 实施缓存数据初始化
-    // this.st.valid && this.initWatch()
     this.vm = new __Vue({
       data: this.dataTree,
       watch: this.watchList

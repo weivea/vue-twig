@@ -32,19 +32,19 @@ export default {
         <h1 style="text-align: center">请在下面输入框输入内容,然后刷新看看</h1>
         session:sessionStorage
         <form style="text-align: center">
-          <input type="text" v-model={form.a}/>
+          <input type="text" value={form.a} on-input={(e)=>{form.a = e.target.value}}/>
           <span>内容:{form.a}</span>
           <br />
-          <input type="text" v-model={form.b}/>
+          <input type="text" value={form.b} on-input={(e)=>{form.b = e.target.value}}/>
           <span>内容:{form.b}</span>
 
         </form>
         storage:localStorage
         <form style="text-align: center">
-          <input type="text" v-model="storage.c"/>
+          <input type="text" value={storage.c} on-input={(e)=>{storage.c = e.target.value}}/>
           内容:{storage.c}
           <br/>
-          <input type="text" v-model="storage.d"/>
+          <input type="text" value={storage.d} on-input={(e)=>{storage.d = e.target.value}}/>
           内容:{storage.d}
           <br/>
         </form>

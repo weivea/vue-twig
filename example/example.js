@@ -28,7 +28,7 @@ Vue.directive('cmodel', {
 
 Vue.use(twig, [{
   key: 'dataTree',
-  saveType:twig.saveType.sessionStorage,
+  //saveType:twig.saveType.sessionStorage,
   dataFun: function *(data) {
     var re = yield thunk(data)
     return re

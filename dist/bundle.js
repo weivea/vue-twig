@@ -460,6 +460,8 @@
 
 	'use strict';
 	
+	Object.defineProperty(exports, '__esModule', { value: true });
+	
 	/* eslint-disable no-new */
 	function storage () {
 	  var re = {};
@@ -556,7 +558,6 @@
 	      console.error(this.opErrStr);
 	    }
 	  }
-	
 	  // 处理配置参数op
 	  explainOption (opItem) {
 	    if (typeof opItem.key !== 'string' || typeof opItem.dataFun !== 'function' || (opItem.saveType && typeof opItem.saveType !== 'string')) {
@@ -611,16 +612,22 @@
 	      this[sType].setItem(this.prex + key, data);
 	    }
 	    this.downFlags[key] = true;
-	    this.timer = setTimeout(() => {
+	    setTimeout(() => {
 	      this.checkReady();
 	    }, 0);
 	  }
 	
 	  watchHander (data, key, sType) {
-	    if (typeof data === 'object') {
-	      data = JSON.stringify(data);
+	    if(this.timer){
+	      clearTimeout(this.timer);
+	      this.timer = null;
 	    }
-	    this[sType].setItem(this.prex + key, data);
+	    this.timer = setTimeout(() => {
+	      if (typeof data === 'object') {
+	        data = JSON.stringify(data);
+	      }
+	      this[sType].setItem(this.prex + key, data);
+	    },0);
 	  }
 	
 	  checkReady () {
@@ -629,8 +636,6 @@
 	        return
 	      }
 	    }
-	    // 实施缓存数据初始化
-	    // this.st.valid && this.initWatch()
 	    this.vm = new __Vue({
 	      data: this.dataTree,
 	      watch: this.watchList
@@ -656,8 +661,35 @@
 	      return twiger.vm.$data
 	    }
 	  });
+	  Object.defineProperty(__Vue.prototype, '$twigWarp', {
+	    value: twigWarp,
+	    writable: false,
+	    enumerable: true,
+	    configurable: true
+	  });
 	}
-	
+	function twigWarp(obj){
+	  if (Object.prototype.toString.call(obj) === '[object Object]') {
+	    var re = {};
+	    for(var key in obj){
+	      const val = obj[key];
+	      Object.defineProperty(re, key, {
+	        enumerable: true,
+	        configurable: true,
+	        get: function () {
+	          return val
+	        },
+	        set: function (newVal) {
+	          console.error(`As a twig index, prop "${key}" can't be modified by '='`);
+	        }
+	      });
+	    }
+	    return re
+	  }else{
+	    console.error('$twigWarp()\'s param format should be JSON');
+	    return ob
+	  }
+	}
 	function ready (cb) {
 	  if (twiger) {
 	    twiger.ready = cb;
@@ -669,13 +701,15 @@
 	if (typeof window !== 'undefined' && window.Vue) {
 	  window.Vue.use(Twig);
 	}
-	var index = {
+	module.exports = {
 	  install,
 	  saveType,
+	  twigWarp,
 	  ready: ready
 	};
 	
-	module.exports = index;
+	exports.saveType = saveType;
+	exports.twigWarp = twigWarp;
 
 
 /***/ },

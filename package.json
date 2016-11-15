@@ -4,7 +4,7 @@
   "description": "example",
   "main": "index.js",
   "scripts": {
-    "build": "mkdir vue-storage; cp ../index.js ./vue-storage; cp -R ../lib ./vue-storage; webpack"
+    "test": "echo \"no script\""
   },
   "repository": {
     "type": "git"
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "co": "^4.6.0",
-    "vue": "^1.0.8",
-    "vue-twig": "^1.0.1"
+    "vue": "^2.0.5",
+    "vue-twig": "^2.0.0"
   }
 }

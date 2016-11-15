@@ -1,20 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head lang="zh-CN">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <title>vue-twig</title>
-    <meta name="referrer" content="always">
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keywords" content="vue-storage">
-    <meta name="description" content="vue-storage">
+<!doctype html>
+<html data-framework="vue">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js • vue-twig • TodoMVC</title>
+    <link rel="stylesheet" href="https://unpkg.com/todomvc-app-css/index.css">
+    <script src="https:unpkg.com/director/build/director.js"></script>
+    <style>[v-cloak] { display: none; }</style>
 </head>
 <body>
-<div id="container" class="f-ff0">
-    <app></app>
-</div>
+<section class="todoapp">
+    <todoapp id="container">
 
-<script type="text/javascript" src="dist/bundle.js"></script>
+    </todoapp>
+</section>
 
+<footer class="info">
+    <p>Double-click to edit a todo</p>
+    <p>Written by <a href="http://evanyou.me">Evan You</a></p>
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+</footer>
+<script src="dist/bundle.js"></script>
 </body>
 </html>

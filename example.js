@@ -1,79 +1,25 @@
 /**
- * Created by weijianli on 16/7/23.
+ * Created by weijianli on 16/11/14.
  */
+import Vue from 'vue/dist/vue'
+import twig from 'vue-twig'
+import mbody from './todomvc/mbody.vue'
+import mheader from './todomvc/mheader.vue'
+import mfooter from './todomvc/mfooter.vue'
+import twigData from './todomvc/twig-data'
 
-import Vue from 'vue'
-import twig from'vue-twig'
-import app from './app.vue'
-import co from 'co'
 
-Vue.use(twig,[{
-  key:'dataTree',
-  //saveType:twig.saveType.sessionStorage,
-  dataFun:  function *(data) {
-    console.log(data);
-    var re = yield thunk();
-    return re;
-  }
-},{
-  key:'storage',
-  saveType:twig.saveType.localStorage,
-  dataFun: async function( data) {
-    console.log(data);
-    var re = await storageFun();
-    if(data){re = data};
-    return re;
-  }
-},{
-  key:'session',
-  saveType:twig.saveType.sessionStorage,
-  dataFun: async function( data) {
-    console.log(data);
-    var re = await sessionFun();
-    if(data){re = data};
-    return re;
-  }
-}],co);
-
-function thunk() {
-  return function (cb) {
-    setTimeout(function () {
-      cb(null,[{w:1},{w:2},{w:3},{w:4}]);
-    },500)
-  }
-}
-function storageFun() {
-  return new Promise(function (rs,rj) {
-
-    setTimeout(function () {
-      rs({
-        c:3,
-        d:4
-      });
-    },500)
+window.onload = function () {
+  Vue.use(twig, twigData)
+  twig.ready(function () {
+    window._App = new Vue({
+      el: document.getElementById('container'),
+      template: '<div><mheader/><mbody/><mfooter/></div>',
+      components: {
+        mbody,
+        mheader,
+        mfooter
+      }
+    })
   })
 }
-function sessionFun() {
-  return new Promise(function (rs,rj) {
-    setTimeout(function () {
-      rs({
-        form:{
-          a:1,
-          b:2
-        }
-      });
-    },500)
-  })
-}
-
-twig.ready(function(){
-  window.appVue =  new Vue({
-    el: '#container',
-    components: { app }
-  });
-});
-
-
-
-
-

@@ -16,6 +16,7 @@ import Vue from 'vue'
 import twig from '../index'
 import app from './app'
 import co from 'co'
+let windowLoaded = false;
 
 Vue.directive('cmodel', {
   // 当绑定元素插入到 DOM 中。
@@ -99,11 +100,8 @@ twig.ready(function () {
         <app/>
       )
     }
-    // template: '<app/>',
-    // components: {
-    //   app: app
-    // }
+
   })
-  //
-  // _App.$mount('#container')
 })
+
+

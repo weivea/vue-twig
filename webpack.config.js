@@ -2,12 +2,13 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
-  entry: [
-    './example/example.js'
-  ],
+  entry: {
+    "example":'./example/example.js',
+    "todomvc":'./example/todomvc.js'
+  },
   output: {
     path: 'example/dist',
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: 'dist'
   },
   plugins: [

@@ -2,11 +2,11 @@ import child from './child'
 export default {
   name: 'app',
   data: function () {
-    return {
+    return this.$twigWarp({
       form: this.$twig.session.form,
       storage: this.$twig.storage,
       dataTree: this.$twig.dataTree
-    }
+    })
   },
   created: function () {
     setTimeout(() => {

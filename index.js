@@ -4,7 +4,7 @@
 /* eslint-disable no-new */
 import storage from './lib/storage'
 let __Vue, twiger, readyCallBack
-const saveType = {
+export const saveType = {
   localStorage: 'localStorage',
   sessionStorage: 'sessionStorage'
 }
@@ -47,7 +47,6 @@ class Twig {
       console.error(this.opErrStr)
     }
   }
-
   // 处理配置参数op
   explainOption (opItem) {
     if (typeof opItem.key !== 'string' || typeof opItem.dataFun !== 'function' || (opItem.saveType && typeof opItem.saveType !== 'string')) {
@@ -151,8 +150,35 @@ function install (_Vue, option, co) {
       return twiger.vm.$data
     }
   })
+  Object.defineProperty(__Vue.prototype, '$twigWarp', {
+    value: twigWarp,
+    writable: false,
+    enumerable: true,
+    configurable: true
+  })
 }
-
+export function twigWarp(obj){
+  if (Object.prototype.toString.call(obj) === '[object Object]') {
+    var re = {}
+    for(var key in obj){
+      const val = obj[key];
+      Object.defineProperty(re, key, {
+        enumerable: true,
+        configurable: true,
+        get: function () {
+          return val
+        },
+        set: function (newVal) {
+          console.error(`As a twig index, prop "${key}" can't be modified by '='`)
+        }
+      })
+    }
+    return re
+  }else{
+    console.error('$twigWarp()\'s param format should be JSON')
+    return ob
+  }
+}
 function ready (cb) {
   if (twiger) {
     twiger.ready = cb
@@ -167,5 +193,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   saveType,
+  twigWarp,
   ready: ready
 }

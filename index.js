@@ -190,7 +190,7 @@ function ready (cb) {
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(Twig)
 }
-export default {
+module.exports = {
   install,
   saveType,
   twigWarp,

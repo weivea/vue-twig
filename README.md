@@ -16,104 +16,66 @@ npm install vue-twig --save
 
 example.js
 ```
-import Vue from 'vue'
-import twig from '../index'
-import app from './app'
-import co from 'co'
-
 
 //初始化
-//dataFun支持 一般函数, Generator函数,async 函数
-Vue.use(twig, [{
-  key: 'dataTree',
-  //saveType:未缓存
-  dataFun: function *() {
-    var re = yield thunk(data)
-    return re
-  }
-}, {
-  key: 'storage',
-  saveType: twig.saveType.localStorage,
-  dataFun: async function (data) {//data为缓存数据
-    console.log(data)
-    var re = await storageFun()
-    if (data) {
-      re = data
-    }
-    return re
-  }
-}, {
-  key: 'session',
-  saveType: twig.saveType.sessionStorage,
-  dataFun: async function (data) {//data为缓存数据
-    console.log(data)
-    var re = await sessionFun()
-    if (data) {
-      re = data
-    }
-    return re
-  }
-}], co)
+import Vue from 'vue'
+import twig from 'vue-twig'
+import co from 'co'  //运行Generator函数需要
+import app from './app'
 
-function thunk (data) {
-  console.log(data)
-  return function (cb) {
-    setTimeout(function () {
-      cb(null, data || [{w: 1}, {w: 2}, {w: 3}, {w: 4}])
-    }, 500)
-  }
-}
-function storageFun () {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      resolve({
-        c: 3,
-        d: 4
-      })
-    }, 500)
-  })
-}
-function sessionFun () {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      resolve({
-        form: {
-          a: 1,
-          b: 2
-        }
-      })
-    }, 500)
-  })
-}
+var model = {
+              key: "model名",
+              saveType: twig.saveType.localStorage,//存储类型.localStorage/sessionStorage
+              dataFun: function (data) {//可以是普通函数,Generator函数(需要co模块),async函数
+                //data:缓存的数据
 
+                //生成初始化数据
+
+                return data;//返回初始化的数据
+              }
+            }
+
+Vue.use(twig, model, [co])//co为可选参数
+//或
+Vue.use(twig, [model1,model2,moel3 ...],[co])
+
+//数据初始化成功后创建应用实例
 twig.ready(function () {
   window._App = new Vue({
-    el: '#container',
-    components: {
-      app
-    },
-    render (h) {
-      return (
-        <app/>
-      )
-    }
-
-  })
+      el: '#container',
+      components: {
+        app
+      },
+      render (h) {
+        return (
+          <app/>
+        )
+      }
+    })
 })
-```
 
-app.js
 
-```
-import child from './child'
+
+
+//组件接入子model
+//app.js
+
 export default {
   name: 'app',
   data: function () {
-    return this.$twigWarp({
+    //接入twig
+    var twigs= this.$twigWarp({
       form: this.$twig.session.form,
       storage: this.$twig.storage,
       dataTree: this.$twig.dataTree
     })
+
+    //私有data
+    var privates={
+        a:1,
+        b:2
+    }
+    return Object.assign(twigs,privates)
   },
   created: function () {
     setTimeout(() => {
@@ -173,4 +135,12 @@ export default {
     )
   }
 }
+
+```
+
+app.js
+
+```
+import child from './child'
+
 ```

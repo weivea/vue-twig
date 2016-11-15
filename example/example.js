@@ -16,16 +16,7 @@ import Vue from 'vue'
 import twig from '../index'
 import app from './app'
 import co from 'co'
-let windowLoaded = false;
 
-Vue.directive('cmodel', {
-  // 当绑定元素插入到 DOM 中。
-  bind: function (el, binding) {
-    console.log(arguments)
-    console.log(el)
-    console.log(binding)
-  }
-})
 
 Vue.use(twig, [{
   key: 'dataTree',

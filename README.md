@@ -14,7 +14,6 @@ npm install vue-twig --save
 ## usage
 
 
-example.js
 ```
 
 //初始化

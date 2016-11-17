@@ -4,7 +4,7 @@
 /* eslint-disable no-new */
 import storage from './lib/storage'
 let __Vue, twiger, readyCallBack
-export const saveType = {
+ const saveType = {
   localStorage: 'localStorage',
   sessionStorage: 'sessionStorage'
 }
@@ -159,7 +159,7 @@ function install (_Vue, option, co) {
     configurable: true
   })
 }
-export function twigWarp(obj){
+ function twigWarp(obj){
   if (Object.prototype.toString.call(obj) === '[object Object]') {
     var re = {}
     for(var key in obj){
@@ -190,7 +190,7 @@ function ready (cb) {
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(Twig)
+  window.Twig = Twig
 }
 module.exports = {
   install,

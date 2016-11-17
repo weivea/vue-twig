@@ -20,7 +20,7 @@ npm install vue-twig --save
 //初始化
 import Vue from 'vue'
 import twig from 'vue-twig'
-import co from 'co'  //运行Generator函数需要
+import co from 'co'  //运行Generator函数需要,不需要则不引入
 import app from './app'
 
 var model = {

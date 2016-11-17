@@ -97,8 +97,10 @@ class Twig {
     if (sType === saveType.localStorage || sType === saveType.sessionStorage) {
       if (typeof data === 'object') {
         data = JSON.stringify(data)
+        this[sType].setItem(this.prex + key, data)
+      }else{
+        console.error(`twig model "${key}" should be object`)
       }
-      this[sType].setItem(this.prex + key, data)
     }
     this.downFlags[key] = true
     setTimeout(() => {

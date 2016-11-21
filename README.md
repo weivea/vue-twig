@@ -118,7 +118,7 @@ twig是在mvc的开发思想上,做了进一步模块功能的开发细分:以�
 ![深入分解](./img/2.pic.jpg "深入分解")
 
 固有的mvc因为在复杂页业务场景不好管理model与view之间的关系,twig将程序整体划分为一个一个小的相对独立的子mvc,这样一定程度的解决了
-原有mvc模式的复杂性,有保留了model与view的直接联系.
+原有mvc模式的复杂性,又保留了model与view的直接联系.
 
 这里借鉴了angular.js的rootScope的思想.只是我们每个组件(component/controller)只接触和自己相关的数据;
 

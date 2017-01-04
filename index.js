@@ -183,7 +183,7 @@ function install (_Vue, option, co) {
     return re
   }else{
     console.error('$twigWarp()\'s param format should be JSON')
-    return ob
+    return obj
   }
 }
 function ready (cb) {

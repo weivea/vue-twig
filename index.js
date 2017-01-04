@@ -23,6 +23,7 @@ class Twig {
 
     this.watchList = {}
     this.downFlags = {}
+    this.readyFlag = false
     var st = storage()
     this.st = st
     this.sessionStorage = st.sessionStorage
@@ -122,11 +123,15 @@ class Twig {
   }
 
   checkReady () {
+    if(this.readyFlag){
+      return
+    }
     for (var k in this.downFlags) {
       if (this.downFlags[k] === false) {
         return
       }
     }
+    this.readyFlag = true;
     this.vm = new __Vue({
       data: this.dataTree,
       watch: this.watchList
